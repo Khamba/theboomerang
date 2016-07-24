@@ -83,3 +83,4 @@ production:
   database: theboomerang_production
   username: theboomerang
   password: <%= ENV['THEBOOMERANG_DATABASE_PASSWORD'] %>
+  host: localhost
