@@ -1,0 +1,25 @@
+<% if @cart.item_count > 0 %>
+  <div class="cart-container">
+    <h5>Your Cart ( <%= pluralize(@cart.item_count, "Item") %> )</h5>
+    <% @cart.shopping_cart_items.each do |cart_item| %>
+      <div class="row">
+        <div class="col s4">
+          <% product = cart_item.product %>
+          <%= image_tag(product.product_images.first.image_url, width: '100%') %>
+        </div>
+        <div class="col s8">
+          <h6><%= product.name %></h6>
+          <%= link_to("x", cart_remove_item_path(product_id: product.id), remote: true, class: 'right btn', method: :post) %>
+          <h6>Rent: <%= cart_item.price %></h6>
+          <h6>Size: <%= cart_item.size %></h6>
+          <h6>Delivery Date: <%= cart_item.delivery_date %></h6>
+          <h6>Delivery Time: <%= cart_item.delivery_time %></h6>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+    <h5>Total: <%= @cart.total %></h5>
+  </div>
+<% else %>
+  No Items Yet.
+<% end %>

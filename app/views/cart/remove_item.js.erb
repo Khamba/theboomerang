@@ -1,0 +1,4 @@
+$.post('/cart/show_without_layout.html', function(data, status){
+	$('#cart-dropdown').html(data);
+});
+Materialize.toast('Cart Updated!', 1000)

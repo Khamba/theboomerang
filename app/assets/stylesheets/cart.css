@@ -1,0 +1,20 @@
+.radio-p, .cart-form{
+	margin-bottom: 0;
+	margin-top: 3px;
+	margin-left: 15px;
+}
+
+form#cart-form{
+	text-align: left;
+}
+
+.cart-error{
+	display: inline-block;
+	margin-left: 15px;
+	color: red;
+	font-size: 70%;
+}
+
+div#cart-dropdown{
+	color: black;
+}

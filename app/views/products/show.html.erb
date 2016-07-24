@@ -1,0 +1,73 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col s6">
+      <div class="product-images-slider">
+        <% @product_images.each do |i| %>
+          <div>
+            <img src="<%= i.image_url %>" class="product-image">
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col s6 center-align" id="product-info">
+      <h5 class="center-align"> <%= @product.name %> </h5>
+      Rent Price: <%= @product.rent_price %> <br>
+      Actual Price: <%= @product.actual_price %> <br>
+      Sizes Available: <span id="sizes"><%= @product.sizes.join(", ") %></span>
+      <br><br>
+      Categories: 
+      <% @product.categories.each do |category| %>
+        <div class="chip"><%= category.name %></div>
+      <% end %>
+      <br><br>
+      <span id="deatils">Details: <%= @product.description %></span>
+      
+      <br><br>
+
+      <%= form_tag(cart_add_item_path, remote: true, method: :post, id: 'cart-form') do %>
+        <%= hidden_field_tag('product_id', @product.id) %>
+        <p class="radio-p">
+          <label>Size </label><br>
+        </p>
+        <% @product.sizes.each do |size| %>
+          <p class="radio-p">
+            <input name="cart[size]" type="radio" id="<%= size %>" value="<%= size %>" <%= "checked" if @cart_item.size == size %>/>
+            <label for="<%= size %>"><%= size %></label>
+          </p>
+        <% end %>
+        <span class="cart-error" id="size_error"></span>
+        <br><br>
+        <p class="cart-form">
+          <label for="delivery_date">Delivery date: </label>
+          <input type="date" class="datepicker" id="delivery_date" name="cart[delivery_date]" value="<%= @cart_item.delivery_date.strftime('%e %d, %Y') rescue nil %>">
+        </p>
+        <span class="cart-error" id="delivery_date_error"></span>
+        <br><br>
+        <div class="input-field cart-form">
+          <select name="cart[delivery_time]">
+            <option value="" disabled selected>Choose delivery time</option>
+            <option value="9 PM to 12 PM" <%= "selected" if @cart_item.delivery_time == "9 PM to 12 PM" %>>9 PM to 12 PM</option>
+            <option value="12 PM to 3 PM" <%= "selected" if @cart_item.delivery_time == "12 PM to 3 PM" %>>12 PM to 3 PM</option>
+            <option value="3 PM to 6 PM" <%= "selected" if @cart_item.delivery_time == "3 PM to 6 PM" %>>3 PM to 6 PM</option>
+            <option value="6 PM to 9 PM" <%= "selected" if @cart_item.delivery_time == "6 PM to 9 PM" %>>6 PM to 9 PM</option>
+          </select>
+          <label>Delivery time</label>
+        </div>
+        <span class="cart-error" id="delivery_time_error"></span>
+        <br><br>
+        <%= submit_tag('Add to Cart', class: 'waves-effect waves-light btn') %>
+      <% end %>
+    </div>
+  </div>
+  
+  <br>
+  <div class="row center-align">
+    <h3 class="center-align">Admin Actions</h3>
+    <br><br>
+    <div class="col s6"><%= link_to("Edit Images", edit_images_product_path, class: 'waves-effect waves-light btn') %></div>
+    <div class="col s6"><%= link_to("Edit Product Details", edit_product_path, class: 'waves-effect waves-light btn') %></div>
+  </div>
+</div>
+
+    

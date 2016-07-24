@@ -1,0 +1,22 @@
+<div class="row" id="product-index-wrapper">
+  <div class="col l3 m5 hide-on-small-only">
+    <h5> Filters </h5>
+    <%= render 'filters' %>
+  </div>
+  <div class="col l9 m7">
+    <% if @products.empty? %>
+      No Results.
+    <% else %>
+      <div class="row">
+        <div id="sort" class="input-field col s8 m6 l4 right">
+          <select name="sort" class="auto-submit-input" form='filter_form'>
+            <option value="popular" <%= 'selected' if params[:sort] != "high" && params[:sort] != "low" %>>Popularity</option>
+            <option value="high" <%= 'selected' if params[:sort] == "high" %>>Price: High to Low</option>
+            <option value="low" <%= 'selected' if params[:sort] == "low" %>>Price: Low to High</option>
+          </select>
+        </div>
+      </div>  
+      <%= render @products %>
+    <% end %>
+  </div>
+</div>

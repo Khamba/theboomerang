@@ -1,0 +1,36 @@
+.banner{
+	text-align: center;
+	margin-top: 8%;
+	height: 376.463px;
+	letter-spacing: 12px;
+	font-weight: 700;
+	color: white;
+	text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
+}
+
+#western-banner{
+	background-image: image-url("western-banner.jpg");
+	background-size: cover;
+	background-position: center;
+	margin-right: 2.5%;
+}
+
+#ethnic-banner{
+	background-image: image-url("ethnic-banner.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+.button-container{
+	width: 100%;
+}
+
+#banner-container{
+	width: 95%;
+	margin: 0 auto;
+}
+
+.banner h3{
+	display: inline-block;
+	width: 100%;
+}

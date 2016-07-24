@@ -1,0 +1,46 @@
+<%= form_tag(request.path, method: :get, id: 'filter_form') do %>
+  
+  
+  <ul class="collapsible" data-collapsible="expandable">
+    <li>
+      <div class="collapsible-header active">Category</div>
+      <div class="collapsible-body">
+        <% @categories.each do |category| %>
+            <input type="checkbox" id="<%= category.id %>" value="<%= category.id %>" name="filters[categories][]" <%= "checked" if params[:filters] and params[:filters][:categories] and params[:filters][:categories].include?(category.id.to_s) %> />
+            <label for="<%= category.id %>" class="filter-label"><%= category.name %></label>
+            <br>
+        <% end %>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header active">Size</div>
+      <div class="collapsible-body">
+        <% Product::SIZES.each do |size| %>
+            <input type="checkbox" id="<%= size %>" value="<%= size %>" name="filters[sizes][]" <%= "checked" if params[:filters] and params[:filters][:sizes] and params[:filters][:sizes].include?(size) %> />
+            <label for="<%= size %>" class="filter-label"><%= size %></label>
+            <br>
+        <% end %>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header active">Price</div>
+      <div class="collapsible-body" id="slider-expandible">
+        <div id="range"></div>
+        <br>
+        <div class="row">
+          <div class="input-field col s5">
+            <label for="range_min" class="active">From</label>
+            <input id="range_min" type="text" name="filters[range_min]" 
+            value="<%= params[:filters] ? params[:filters][:range_min] : 0 %>" readonly>
+          </div>
+          <div class="input-field col s5">
+            <label for="range_max" class="active">To</label>
+            <input id="range_max" type="text" name="filters[range_max]" value="<%= params[:filters] ? params[:filters][:range_max] : 2000 %>" readonly>
+          </div>
+        </div>         
+      </div>
+    </li>
+  </ul>
+
+  <%= submit_tag('Apply Filters', class: 'waves-effect waves-light btn') %>   
+<% end %>

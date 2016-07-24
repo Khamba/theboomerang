@@ -1,0 +1,3 @@
+$('.cart-error#size_error').html("<%= @cart_item.errors.full_messages_for(:size)[0] %>");
+$('.cart-error#delivery_date_error').html("<%= @cart_item.errors.full_messages_for(:delivery_date)[0] %>");
+$('.cart-error#delivery_time_error').html("<%= @cart_item.errors.full_messages_for(:delivery_time)[0] %>");

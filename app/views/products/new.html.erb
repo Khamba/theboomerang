@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <%= simple_form_for(@product, html: { multipart: true, class: 'col s12 m10 l8 offset-m1 offset-l2' }) do |f| %>
+
+      <h3>New Product</h3> <br>
+
+      <%= f.input :name, required: false %><br>
+
+      <%= f.input :rent_price, required: false %><br>
+
+      <%= f.input :actual_price, required: false %><br>
+
+      <div class="input-field">
+        <%= f.input_field :supercategory, collection: Product::SUPERCATEGORIES, wrapper_html: { class: 'input-field' }, include_blank: false %>
+        <%= f.label :supercategory %> 
+        <%= f.error :supercategory %> 
+      </div> <br>
+      
+      <%= f.label :sizes %>
+      <% Product::SIZES.each do |size| %>
+        <p>
+          <input type="checkbox" name="product[sizes][]" id="<%= size %>" value="<%= size %>" checked />
+          <label for="<%= size %>"><%= size %></label>
+        </p>
+      <% end %> 
+      <%= f.error :sizes %>
+      <br><br>
+
+      <%= f.input :description, wrapper_html: { class: 'input-field' }, input_html: { class: 'materialize-textarea' } %>
+      <br>
+
+      <%= f.simple_fields_for(:product_images) do |ff| %>
+        <%= ff.input :image, input_html: { multiple: true, name: "product_images[image][]" }, label: 'Images <br>'.html_safe %>
+      <% end %> <br>
+      <%= f.error 'product_images.base' %>
+      <br><br>
+
+      <label>Categories</label>
+      <select name="product_categories[category_id][]" multiple>
+        <option value="" disabled selected>Choose all applicable categories</option>
+        <% Category.find_each do |category| %>
+          <option value="<%= category.id %>"><%= category.name %></option>
+        <% end %>
+      </select>
+      <br><br>
+
+      <%= f.submit %>
+    <% end %>
+  </div>
+
+</div>

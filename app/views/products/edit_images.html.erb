@@ -1,0 +1,43 @@
+<br><br>
+<div class="container">
+   <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header">Delete Images</div>
+      <div class="collapsible-body">
+        <%= form_tag(destroy_images_product_path) do %>
+          <% @product.product_images.each do |i| %>
+            <div class="edit-image-wrapper">
+              <input type="checkbox" name="product_images_ids[]" id="<%= i.id %>" value="<%= i.id %>" />
+              <label for="<%= i.id %>" class="destroy-image-label"><%= image_tag(i.image_url, width: 200) %></label>
+            </div>
+          <% end %>
+          <br><br>
+          <%= submit_tag('Delete these images', class: 'waves-effect waves-light btn') %>
+        <% end %>
+        <br>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header">Add new Images</div>
+      <div class="collapsible-body">
+        <%= form_tag(add_images_product_path, multipart: true) do %>
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>File</span>
+              <input type="file" name="product_images[]" multiple>
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="Upload one or more images">
+            </div>
+          </div>
+        <%= submit_tag('Upload Images', class: 'waves-effect waves-light btn') %>
+        <% end %>
+        <br>
+      </div>
+    </li>
+  </ul>
+  
+  <br><br>
+  <%= link_to("Back to product", @product, class: 'waves-effect waves-light btn') %>
+
+</div>

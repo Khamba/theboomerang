@@ -1,0 +1,28 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id            :integer          not null, primary key
+#  name          :string
+#  rent_price    :integer
+#  actual_price  :integer
+#  description   :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  supercategory :string
+#  sizes         :string           default([]), is an Array
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  rent_price: 1
+  actual_price: 1
+  description: MyText
+
+two:
+  name: MyString
+  rent_price: 1
+  actual_price: 1
+  description: MyText
