@@ -62,12 +62,14 @@
   </div>
   
   <br>
-  <div class="row center-align">
-    <h3 class="center-align">Admin Actions</h3>
-    <br><br>
-    <div class="col s6"><%= link_to("Edit Images", edit_images_product_path, class: 'waves-effect waves-light btn') %></div>
-    <div class="col s6"><%= link_to("Edit Product Details", edit_product_path, class: 'waves-effect waves-light btn') %></div>
-  </div>
+  <% if user_signed_in? and current_user.admin? %>
+    <div class="row center-align">
+      <h3 class="center-align">Admin Actions</h3>
+      <br><br>
+      <div class="col s6"><%= link_to("Edit Images", edit_images_product_path, class: 'waves-effect waves-light btn') %></div>
+      <div class="col s6"><%= link_to("Edit Product Details", edit_product_path, class: 'waves-effect waves-light btn') %></div>
+    </div>
+  <% end %>
 </div>
 
     

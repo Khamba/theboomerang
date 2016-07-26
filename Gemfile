@@ -64,3 +64,5 @@ gem "jquery-slick-rails"
 gem 'devise'
 gem "omniauth-google-oauth2"
 gem 'omniauth-facebook'
+
+gem "pundit"

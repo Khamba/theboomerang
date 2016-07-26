@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+  before_action :authorize_only_admins, except: [ :western_index, :ethnic_index, :show ]
+
   def western_index
     @categories = Category.joins(:products).where('products.supercategory' => 'Western').distinct
     @products = Product.where('supercategory' => 'Western').distinct
@@ -129,5 +131,9 @@ class ProductsController < ApplicationController
      def filter_params
        params.require(:filters).permit(:range_min, :range_max, :sort, categories: [], sizes: [])
      end
+
+     def authorize_only_admins
+      authorize(Product, :is_admin?)
+    end
 
 end

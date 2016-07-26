@@ -1,6 +1,9 @@
-<div class="container">
-  <div class="row">
-    <%= simple_form_for(@product, html: { multipart: true, class: 'col s12 m10 l8 offset-m1 offset-l2' }) do |f| %>
+<div class="row">
+  <div class="col s6 m4 l3">
+    <%= render 'welcome/sidenav' %>
+  </div>
+  <div class="col s6 m8 l9">
+    <%= simple_form_for(@product, html: { multipart: true, class: 'col s12 m10 l8 offset-m1 offset-l1' }) do |f| %>
 
       <h3>New Product</h3> <br>
 
@@ -47,5 +50,4 @@
       <%= f.submit %>
     <% end %>
   </div>
-
 </div>

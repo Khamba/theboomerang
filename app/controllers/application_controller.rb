@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  include Pundit
+
   protect_from_forgery with: :exception
+  
   before_filter :create_guest_if_needed
   before_filter :get_shopping_cart
   helper_method :after_omniauth_failure_path_for, :user_or_guest
